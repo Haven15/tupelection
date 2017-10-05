@@ -1,0 +1,3 @@
+Select v.Voter_ID, FirstName, MiddleInitial, LastName, c.CourseName, College_Code, v.Email, Password
+From voter_table as v, course_table as c
+Where v.Course_Code = c.Course_Code
