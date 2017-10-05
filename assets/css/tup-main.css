@@ -59,3 +59,53 @@
 main .select2-container--default .select2-selection--single .select2-selection__rendered {
   line-height: 25px;
 }
+
+.red-button {
+  background-color: #ca4c5a;
+}
+
+.footer-black {
+  background-color: #333;
+  color: #ffffff;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.progress-box {
+  position: relative;
+}
+
+.box.box-solid.box-danger>.box-header {
+  background: #bd2031;
+  background-color: #bd2031;
+}
+
+.margin-select {
+  margin-left: -5%;
+}
+
+main .form-control {
+  border-radius: 0;
+}
+
+.title-election {
+  color: #ffffff;
+  margin-top: 13.7;
+}
+
+.strong {
+  font-weight: bold;
+}
+
+.yellow-text {
+  color: #f5d02a;;
+}
+
+.darkgreen-bg {
+  background-color: #355C7D;
+  color: #ffffff;
+}
+
+.darkgreen-bg:hover {
+  color: #CCCCCC;
+}

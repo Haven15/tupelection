@@ -56,4 +56,5 @@ $route['election'] = 'election';
 $route['(:any)'] = 'election/view/$1';
 //$route['election/(:any)'] = 'election/$1';
 $route['(:any)'] = 'pages/view/$1';
+$route['(:any)'] = 'trunk/$1';
 //$route['default_controller'] = 'pages';

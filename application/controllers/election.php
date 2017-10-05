@@ -11,7 +11,7 @@ class election extends CI_Controller{
           $this->load->helper('url_helper');
         }
 
-        public function view($slug = NULL)
+        public function overview($slug = NULL)
         {
                 $data['election_data'] = $this->e->get_election($slug);
                 if (empty($data['election_data']))
@@ -20,10 +20,27 @@ class election extends CI_Controller{
                 }
                 //$data['Elec_Title'] = $data['election_data']['Elec_Title'];
 
+
                 $this->load->view('templates/admin_header', $data);
                 $this->load->view('admin/overview', $data);
                 $this->load->view('templates/admin_footer');
         }
+
+        public function voters($slug = NULL)
+        {
+                $data['election_data'] = $this->e->get_election($slug);
+                if (empty($data['election_data']))
+                {
+                        show_404();
+                }
+                //$data['Elec_Title'] = $data['election_data']['Elec_Title'];
+
+
+                $this->load->view('templates/admin_header', $data);
+                $this->load->view('admin/voters', $data);
+                $this->load->view('templates/admin_footer');
+        }
+
 
         public function dashboard($page = 'dashboard')
         {
@@ -98,26 +115,36 @@ class election extends CI_Controller{
 
                 //$data['title'] = ucfirst($page); // Capitalize the first letter
 
-                $data['voters'] = $this->m->getVoters();
+                $data['courses'] = $this->m->getCourse();
                 $this->load->view('templates/header');
             		$this->load->view('election/'.$page, $data);
             		$this->load->view('templates/footer');
         }
-        public function voters($page = 'voters')
+
+        public function editvoter($page = 'editvoter')
         {
-                if ( ! file_exists(APPPATH.'views/admin/'.$page.'.php'))
+                if ( ! file_exists(APPPATH.'views/election/'.$page.'.php'))
                 {
                         // Whoops, we don't have a page for that!
                         show_404();
                 }
 
-                $data['title'] = ucfirst($page); // Capitalize the first letter
+                //$data['title'] = ucfirst($page); // Capitalize the first letter
 
-                //$data['voters'] = $this->m->getVoters();
-                $this->load->view('templates/admin_header');
-            		$this->load->view('admin/'.$page, $data);
-            		$this->load->view('templates/admin_footer');
+                $data['voters'] = $this->m->getVoters();
+
+                $this->load->view('templates/header');
+            		$this->load->view('election/'.$page, $data);
+            		$this->load->view('templates/footer');
         }
+
+        public function edit($id){
+      		$data['voters'] = $this->m->getVoterById($id);
+          $data['courses'] = $this->m->getCourse();
+      		$this->load->view('templates/header');
+      		$this->load->view('election/editvoter', $data);
+      		$this->load->view('templates/footer');
+      	}
 
         public function create()
         {
@@ -141,7 +168,7 @@ class election extends CI_Controller{
       	}
 
         public function updateVoter(){
-      		$result = $this->m->update();
+      		$result = $this->m->updatevoter();
       		if($result){
       			$this->session->set_flashdata('success_msg', 'Record updated successfully.');
       		}else{

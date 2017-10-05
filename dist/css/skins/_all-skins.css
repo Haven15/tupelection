@@ -926,7 +926,7 @@
  * ---------
  */
 .skin-red .main-header .navbar {
-  background-color: #dd4b39;
+  background-color:#bd2031
 }
 .skin-red .main-header .navbar .nav > li > a {
   color: #ffffff;
@@ -966,15 +966,15 @@
   }
 }
 .skin-red .main-header .logo {
-  background-color: #d73925;
+  background-color:#ca4c5a;
   color: #ffffff;
   border-bottom: 0 solid transparent;
 }
 .skin-red .main-header .logo:hover {
-  background-color: #d33724;
+  background-color: ##bd2031;
 }
 .skin-red .main-header li.user-header {
-  background-color: #dd4b39;
+  background-color:#c33645;
 }
 .skin-red .content-header {
   background: transparent;
