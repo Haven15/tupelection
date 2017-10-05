@@ -1,0 +1,59 @@
+/* Media queries CSS file of TUP Election System */
+/*==========  Mobile First Method  ==========*/
+
+
+/* === iPhone5 Portrait Viewport === */
+@media only screen and (min-width: 320px) {
+
+}
+
+/* === Galaxy S5 Portrait Viewport === */
+@media only screen and (min-width: 360px) {
+
+}
+
+/* === iPhone6 Portrait Viewport === */
+@media only screen and (min-width: 375px) {
+
+}
+
+/* === Nexus 5X Portrait Viewport === */
+@media only screen and (min-width: 412px) {
+
+}
+
+/* === iPhone6 Plus Portrait Viewport === */
+@media only screen and (min-width: 414px) {
+
+}
+
+/* === iPhone5 Landscape Viewport === */
+@media only screen and (min-width: 568px) {
+
+}
+
+/* === Galaxy S5 Landscape Viewport === */
+@media only screen and (min-width: 640px) {
+
+}
+
+/* === iPhone6 Landscape Viewport === */
+@media only screen and (min-width: 667px) {
+
+}
+
+/* === Nexus 5X Landscape Viewport === */
+@media only screen and (min-width: 732px) {
+
+}
+
+/* === iPhone6 Plus Landscape Viewport === */
+@media only screen and (min-width: 736px) {
+
+}
+
+
+/* === Desktop Viewport === */
+@media only screen and (min-width: 992px) {
+
+}
