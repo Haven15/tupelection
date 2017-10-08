@@ -20,7 +20,6 @@ class election extends CI_Controller{
                 }
                 //$data['Elec_Title'] = $data['election_data']['Elec_Title'];
 
-
                 $this->load->view('templates/admin_header', $data);
                 $this->load->view('admin/overview', $data);
                 $this->load->view('templates/admin_footer');
@@ -35,12 +34,11 @@ class election extends CI_Controller{
                 }
                 //$data['Elec_Title'] = $data['election_data']['Elec_Title'];
 
-
+                $data['voters'] = $this->m->getVotersPerElection($slug);
                 $this->load->view('templates/admin_header', $data);
                 $this->load->view('admin/voters', $data);
                 $this->load->view('templates/admin_footer');
         }
-
 
         public function dashboard($page = 'dashboard')
         {
@@ -121,6 +119,23 @@ class election extends CI_Controller{
             		$this->load->view('templates/footer');
         }
 
+        public function addvoter($slug = NULL)
+        {
+                $data['election_data'] = $this->e->get_election($slug);
+                if (empty($data['election_data']))
+                {
+                        show_404();
+                }
+                //$data['Elec_Title'] = $data['election_data']['Elec_Title'];
+
+                //$data['voters'] = $this->m->getVotersPerElection($slug);
+                $data['voters'] = $this->m->getAllVoterID();
+                $data['courses'] = $this->m->getAllVoterCourse();
+                $this->load->view('templates/admin_header', $data);
+                $this->load->view('admin/addvoter', $data);
+                $this->load->view('templates/admin_footer');
+        }
+
         public function editvoter($page = 'editvoter')
         {
                 if ( ! file_exists(APPPATH.'views/election/'.$page.'.php'))
@@ -185,6 +200,49 @@ class election extends CI_Controller{
       			$this->session->set_flashdata('error_msg', 'Faill to delete record.');
       		}
       		redirect(base_url('election/voterspage'));
+      	}
+
+        public function addVoterID($id){
+          $result = $this->m->addVoterbyID($id);
+
+          if ($result == '1'){
+            $this->session->set_flashdata('error_msg', 'Fail to Add Record.');
+          }
+          else if($result == '2'){
+            $this->session->set_flashdata('success_msg', 'Voter added successfully.');
+          }else if($result == '3'){
+      		  $this->session->set_flashdata('error_msg', 'Voter already exists.');
+      		}
+      		redirect(base_url('election/voters/'.$id));
+      	}
+
+        public function addVoterCourse($id){
+          $result = $this->m->addVoterbyCourse($id);
+      		if($result){
+      			$this->session->set_flashdata('success_msg', 'Record added successfully.');
+      		}else{
+      			$this->session->set_flashdata('error_msg', 'Fail to add record.');
+      		}
+      		redirect(base_url('election/voters/'.$id));
+      	}
+
+        public function deletePerVoter($id){
+      		$result = $this->m->deleteVoterPerElection($id);
+      		if($result){
+      			$this->session->set_flashdata('success_msg', 'Record deleted successfully.');
+      		}else{
+      			$this->session->set_flashdata('error_msg', 'Fail to delete record.');
+      		}
+      		redirect(base_url('election/voters/'.$id));
+      	}
+        public function deleteAllVoters($id){
+      		$result = $this->m->deleteAllVoters($id);
+      		if($result){
+      			$this->session->set_flashdata('success_msg', 'Record deleted successfully.');
+      		}else{
+      			$this->session->set_flashdata('error_msg', 'Fail to delete record.');
+      		}
+      		redirect(base_url('election/voters/'.$id));
       	}
 }
 

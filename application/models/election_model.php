@@ -52,17 +52,20 @@ class election_model extends CI_Model{
 	}
 
 	public function CreateElection(){
-		$StartDate = $this->input->post('startDate');
-		$StartTime = $this->input->post('starttime');
-		$date = DateTime::createFromFormat( 'H:i A', $StartTime);
-		$FormattedStartTime = $date->format( 'H:i:s');
-		$StartDateTime = $StartDate.' '.$FormattedStartTime;
-
-		$EndDate = $this->input->post('endDate');
-		$EndTime = $this->input->post('endtime');
-		$date2 = DateTime::createFromFormat( 'H:i A', $EndTime);
-		$FormattedEndTime = $date2->format( 'H:i:s');
-		$EndDateTime = $EndDate.' '.$FormattedEndTime;
+		// $StartDate = $this->input->post('startDate');
+		// $StartTime = $this->input->post('starttime');
+		// $date = DateTime::createFromFormat( 'H:i A', $StartTime);
+		// $FormattedStartTime = $date->format( 'H:i:s');
+		// $StartDateTime = $StartDate.' '.$FormattedStartTime;
+		//
+		// $EndDate = $this->input->post('endDate');
+		// $EndTime = $this->input->post('endtime');
+		// $date2 = DateTime::createFromFormat( 'H:i A', $EndTime);
+		// $FormattedEndTime = $date2->format( 'H:i:s');
+		// $EndDateTime = $EndDate.' '.$FormattedEndTime;
+		$DateString = $this->input->post('Date');
+		$StartDateTime = substr($DateString, 0, 16);
+		$EndDateTime =  substr($DateString, 19, 34);
 
 		$field = array(
 			'Elec_Title'=>$this->input->post('electitle'),

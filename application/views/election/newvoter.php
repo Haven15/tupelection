@@ -11,7 +11,7 @@
       <li><a href="voterspage"><i class="fa fa-user"></i> Voters</a></li>
       <li class="active"><i class="fa fa-user-plus"></i> Add Voter</li>
     </ol>
-  </section>
+    </section>
   <section class="content">
     <div class="row">
       <div class="col-md-8">
@@ -34,17 +34,17 @@
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
                   <div class="col-sm-10">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email" name="email" required></input>
+                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email" name="email" required>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="RandPass" class="col-sm-2 control-label">Password</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="RandPass" placeholder="Password" name="password" required></input>
+                    <input type="text" class="form-control" id="RandPass" placeholder="Password" name="password" required>
                   </div>
                   <span class="form-group-btn">
-                    <button type="button" class="btn btn-primary btn-flat" onClick="GenerateRandomPassword()"><i class="fa fa-bolt"></i></button>
+                    <button type="button" class="btn btn-primary btn-flat" onClick="GenerateRandomPassword()" style=""><i class="fa fa-bolt"></i></button>
                   </span>
                 </div>
 
@@ -151,4 +151,8 @@
   function GenerateRandomPassword(){
     document.getElementById("RandPass").value = "<?php echo rand_string(8);?>";
   }
+
+  $(function () {
+    $('.select2').select2()
+  })
   </script>

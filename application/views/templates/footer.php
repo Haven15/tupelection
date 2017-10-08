@@ -18,6 +18,9 @@
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
 
+  <!-- date-range-picker -->
+  <script src="<?php echo base_url("dist/bower_components/moment/min/moment.min.js")?>"></script>
+  <script src="<?php echo base_url("dist/bower_components/bootstrap-daterangepicker/daterangepicker.js")?>"></script>
   <!-- bootstrap datepicker -->
   <script src="<?php echo base_url("dist/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js")?>"></script>
   <!-- bootstrap time picker -->

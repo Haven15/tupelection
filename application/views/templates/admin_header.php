@@ -5,26 +5,32 @@
   <meta name="description" content="TUP Online Election">
   <title>TUP Online Election</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link type="text/css" rel="stylesheet" href="<?php echo base_url("dist/css/skins/_all-skins.min.css")?>" />
-  <link type="text/css" rel="stylesheet" href="<?php echo base_url("")?>" />
   <link type="text/css" rel="stylesheet" href="<?php echo base_url("dist/css/skins/skin-red.css")?>" />
   <link type="text/css" rel="stylesheet" href="<?php echo base_url("dist/css/bootstrap.min.css")?>" />
   <!-- Admin LTE CSS -->
-  <link type="text/css" rel="stylesheet" href="<?php echo base_url("dist/css/AdminLTE.min.css")?>" />
   <link type="text/css" rel="stylesheet" href="<?php echo base_url("dist/bower_components/font-awesome/css/font-awesome.min.css")?>" />
   <link type="text/css" rel="stylesheet" href="<?php echo base_url("dist/bower_components/Ionicons/css/ionicons.min.css")?>" />
   <link type="text/css" rel="stylesheet" href="<?php echo base_url("dist/plugins/iCheck/square/blue.css")?>" />
-
+  <link type="text/css" rel="stylesheet" href="<?php echo base_url("dist/css/AdminLTE.min.css")?>" />
+  <link type="text/css" rel="stylesheet" href="<?php echo base_url('dist/bower_components/select2/dist/css/select2.min.css') ?>">
   <link type="text/css" rel="stylesheet" href="<?php echo base_url("assets/css/tup-main.css")?>" />
   <link type="text/css" rel="stylesheet" href="<?php echo base_url("assets/css/tup-media.css")?>" />
-
+  <!-- Data Tables -->
   <link rel="stylesheet" href="<?php echo base_url("dist/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css")?>">
 
   <!-- jQuery 3 -->
   <script src="<?php echo base_url("dist/bower_components/jquery/dist/jquery.min.js")?>"></script>
 
+
 </head>
-<body class="hold-transition skin-red fixed sidebar-mini">
+<body class="hold-transition skin-red fixed sidebar-mini ">
+  <?php
+   if(!$this->session->userdata('is_logged_in') ){
+      redirect('../login/index');
+      }
+  ?>
   <!-- Site wrapper -->
   <div class="wrapper">
 
@@ -32,14 +38,14 @@
       <!-- Logo -->
       <a href="#" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>TUP</b>E</span>
+        <span class="logo-mini"><b>TUP</b>OE</span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>TUP</b> Election</span>
+        <span class="logo-lg"><b>TUP</b> Online Election</span>
       </a>
 
       <!-- Header Navbar: style can be found in header.less -->
       <nav class="navbar navbar-static-top">
-        <?php $IDslug = $election_data['Election_ID']; //echo $IDslug;?>
+        <?php $IDslug = $election_data['Election_ID'];?>
         <!-- <span class="label label-info"><?php //echo $election_data['Election_Status']; ?></span> -->
         <!-- Sidebar toggle button-->
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
@@ -74,7 +80,7 @@
         </div>
         -->
         <!-- search form -->
-        <form action="#" method="get" class="sidebar-form">
+        <!-- <form action="#" method="get" class="sidebar-form">
           <div class="input-group">
             <input type="text" name="q" class="form-control" placeholder="Search...">
                 <span class="input-group-btn">
@@ -82,7 +88,7 @@
                   </button>
                 </span>
           </div>
-        </form>
+        </form> -->
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
@@ -149,7 +155,7 @@
           <li>
             <a href="#">
               <i class="fa fa-gears (alias)"></i>
-              <span>Maintenance</span>
+              <span>Settings</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-down pull-right"></i>
               </span>
@@ -160,23 +166,6 @@
               <li><a href="#"><i class="fa fa-circle-o"></i> Position</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> Political Party</a></li>
             </ul>
-          </li>
-          <li class="treeview">
-            <a href="archives.php">
-              <i class="fa fa-archive"></i> <span>Archives</span>
-              <!--
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            -->
-            </a>
-            <!--
-            <ul class="treeview-menu">
-              <li><a href="../forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
-              <li><a href="../forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-              <li><a href="../forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
-            </ul>
-          -->
           </li>
           <li class="header">ELECTION</li>
           <li>

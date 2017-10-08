@@ -5,6 +5,7 @@
         <?php
           if($this->session->flashdata('success_msg')){
         ?>
+          <br />
           <div class="alert alert-success alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
             <i class="icon fa fa-check"></i>
@@ -16,6 +17,7 @@
         <?php
           if($this->session->flashdata('error_msg')){
         ?>
+          <br />
           <div class="alert alert-success">
             <?php echo $this->session->flashdata('error_msg'); ?>
           </div>
@@ -33,19 +35,19 @@
         Elections
       </h1>
       <ol class="breadcrumb">
-        <li class="active"><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li class="active"><a href=""><i class="fa fa-dashboard"></i> Dashboard</a></li>
       </ol>
     </section>
   <!-- Main content -->
   <section class="content">
       <div class="box box-danger">
         <div class="box-header with-border">
-          <h3 class="box-title">Dashboard</h3>
+          <h3 class="box-title"><i class="fa fa-dashboard"> Dashboard</i></h3>
         </div>
         <div class="box-body">
           <div class="row">
             <div class="col-md-2">
-              <a href="<?php echo base_url('election/new')?>" class="btn btn-block darkgreen-bg"><i class="fa  fa-plus-square"></i> <span>Add Election</span></a>
+              <a href="<?php echo base_url('election/new')?>" class="btn btn-block darkgreen-bg"><i class="fa fa-plus-square"></i> <span>Add Election</span></a>
             <br  />
             <strong>Filter by Status:</strong>
               <form action="<?php echo base_url('election/sort') ?>" method="POST">
