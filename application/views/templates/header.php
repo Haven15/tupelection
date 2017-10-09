@@ -15,18 +15,17 @@
     <link type="text/css" rel="stylesheet" href="<?php echo base_url("dist/plugins/iCheck/square/blue.css")?>" />
     <link type="text/css" rel="stylesheet" href="<?php echo base_url('dist/css/AdminLTE.min.css') ?>">
     <link type="text/css" rel="stylesheet" href="<?php echo base_url('dist/bower_components/select2/dist/css/select2.min.css') ?>">
-
     <link type="text/css" rel="stylesheet" href="<?php echo base_url('dist/css/skins/_all-skins.css') ?>">
 
     <!-- bootstrap rangedatepicker -->
     <link type="text/css" rel="stylesheet" href="<?php echo base_url('dist/bower_components/bootstrap-daterangepicker/daterangepicker.css') ?>">
     <!-- bootstrap datepicker -->
-    <link type="text/css" rel="stylesheet" href="<?php echo base_url('dist/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') ?>">
-    <link type="text/css" rel="stylesheet" href="<?php echo base_url('dist/bower_components/select2/dist/css/select2.min.css') ?>">
+    <!-- <link type="text/css" rel="stylesheet" href="<?php //echo base_url('dist/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') ?>"> -->
+    <!-- <link type="text/css" rel="stylesheet" href="<?php //echo base_url('dist/bower_components/select2/dist/css/select2.min.css') ?>"> -->
     <!-- Bootstrap time Picker -->
-    <link type="text/css" rel="stylesheet" href="<?php echo base_url('dist/plugins/timepicker/bootstrap-timepicker.min.css') ?>">
+    <!-- <link type="text/css" rel="stylesheet" href="<?php //echo base_url('dist/plugins/timepicker/bootstrap-timepicker.min.css') ?>"> -->
     <!-- Bootstrap Date Time Picker -->
-    <link type="text/css" rel="stylesheet" href="<?php echo base_url('dist/plugins/datetimepicker/bootstrap-datetimepicker.min.css') ?>">
+    <!-- <link type="text/css" rel="stylesheet" href="<?php //echo base_url('dist/plugins/datetimepicker/bootstrap-datetimepicker.min.css') ?>"> -->
     <!-- Data Tables -->
     <link type="text/css" rel="stylesheet" href="<?php echo base_url("dist/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css")?>">
     <!-- TUP CSS -->

@@ -29,7 +29,7 @@ class Login extends CI_Controller {
 			$this->session->set_userdata($data);
 			redirect('../election/dashboard');
 		}else{
-			$this->session->set_flashdata('error_msg', 'Voter ID or Password is incorrect.');
+			$this->session->set_flashdata('error_msg', 'Username or Password is incorrect.');
 			$this->index();
 		}
 		
