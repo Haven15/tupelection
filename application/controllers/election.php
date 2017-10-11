@@ -11,6 +11,10 @@ class election extends CI_Controller{
           $this->load->helper('url_helper');
         }
 
+        // public function index(){
+        //   $this->load->view('admin/jsontest');
+        // }
+
         public function overview($slug = NULL)
         {
                 $data['election_data'] = $this->e->get_election($slug);
@@ -131,6 +135,7 @@ class election extends CI_Controller{
                 //$data['voters'] = $this->m->getVotersPerElection($slug);
                 $data['voters'] = $this->m->getAllVoterID();
                 $data['courses'] = $this->m->getAllVoterCourse();
+                $data['eligiblevoters'] = $this->m->getEligibleVoters($slug);
                 $this->load->view('templates/admin_header', $data);
                 $this->load->view('admin/addvoter', $data);
                 $this->load->view('templates/admin_footer');
@@ -152,6 +157,22 @@ class election extends CI_Controller{
             		$this->load->view('election/'.$page, $data);
             		$this->load->view('templates/footer');
         }
+
+        public function voteractivity($slug = NULL, $voterID = null)
+        {
+                $data['election_data'] = $this->e->get_election($slug);
+                if (empty($data['election_data']))
+                {
+                        show_404();
+                }
+                //$data['Elec_Title'] = $data['election_data']['Elec_Title'];
+
+                $data['voters'] = $this->m->getVotersPerElection($slug);
+                $this->load->view('templates/admin_header', $data);
+                $this->load->view('admin/voteractivity', $data);
+                $this->load->view('templates/admin_footer');
+        }
+
 
         public function edit($id){
       		$data['voters'] = $this->m->getVoterById($id);
@@ -223,7 +244,17 @@ class election extends CI_Controller{
       		}else{
       			$this->session->set_flashdata('error_msg', 'Fail to add record.');
       		}
-      		redirect(base_url('election/voters/'.$id));
+      		redirect(base_url('election/addvoter/'.$id));
+      	}
+
+        public function deleteVoterCourse($id){
+          $result = $this->m->deleteEligibleVoter($id);
+      		if($result){
+      			$this->session->set_flashdata('success_msg', 'Record added successfully.');
+      		}else{
+      			$this->session->set_flashdata('error_msg', 'Fail to add record.');
+      		}
+      		redirect(base_url('election/addvoter/'.$id));
       	}
 
         public function deletePerVoter($id){
@@ -244,6 +275,7 @@ class election extends CI_Controller{
       		}
       		redirect(base_url('election/voters/'.$id));
       	}
+
 }
 
 ?>

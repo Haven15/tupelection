@@ -25,7 +25,7 @@
   <div class="container">
     <section class="content-header">
       <h1>
-        List of Voters
+        List of Registered Voters
       </h1>
       <ol class="breadcrumb">
         <li class="active"><a href="voterspage"><i class="fa fa-user"></i> Voters</a></li>
@@ -39,7 +39,7 @@
           <div class="box-header">
             <h3 class="box-title">Voters</h3>
             <div class="pull-right">
-              <a href="<?php echo base_url("election/newvoter")?>" class="btn btn-info">Add Voter <i class="fa fa-user-plus"></i></a>
+              <!-- <a href="<?php //echo base_url("election/newvoter")?>" class="btn btn-info">Add Voter <i class="fa fa-user-plus"></i></a> -->
             </div>
           </div>
           <!-- /.box-header -->
@@ -53,8 +53,8 @@
                 <th>Last Name</th>
                 <th>College</th>
                 <th>Course</th>
-                <th>Email</th>
-                <th>Action</th>
+                <th>Date Registered</th>
+                <!-- <th>Action</th> -->
               </tr>
               </thead>
               <tbody>
@@ -69,15 +69,15 @@
                   <td><?php echo $voter->LastName; ?></td>
                   <td><?php echo $voter->College_Code; ?></td>
                   <td><?php echo $voter->Course_Code; ?></td>
-                  <td><?php echo $voter->Email; ?></td>
-                  <td>
-                    <div class="btn-group">
+                  <td><?php echo $voter->Date_Registered; ?></td>
+                  <!-- <td> -->
+                    <!-- <div class="btn-group">
                       <a href="<?php echo base_url('election/edit/'.$voter->Voter_ID)?>" class="btn btn-primary" title="Edit Voter"><span class="glyphicon glyphicon-edit"></span></a>
                       <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteVoter-<?php echo $voter->Voter_ID; ?>" data-placement="top" title="Remove"><span class="glyphicon glyphicon-trash"></button>
-                    </div>
+                    </div> -->
                     <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateVoter-<?php echo $voter->Voter_ID; ?>" data-placement="top" title="Edit"><span class="glyphicon glyphicon-edit"></button> -->
                       <!-- Modal for Update Voter -->
-                      <div class="modal fade" id="updateVoter-<?php echo $voter->Voter_ID; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <!-- <div class="modal fade" id="updateVoter-<?php echo $voter->Voter_ID; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -123,11 +123,11 @@
                             </form>
                           </div>
                         </div>
-                      </div>
+                      </div> -->
                       <!-- End for Update Voter Modal -->
 
                       <!-- Modal for Delete Voter -->
-                      <div class="modal fade" id="deleteVoter-<?php echo $voter->Voter_ID; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <!-- <div class="modal fade" id="deleteVoter-<?php echo $voter->Voter_ID; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -143,9 +143,9 @@
                             </form>
                           </div>
                         </div>
-                      </div>
+                      </div> -->
                       <!-- End for Delete Voter Modal -->
-                  </td>
+                  <!-- \</td> -->
                 </tr>
               <?php
                   }

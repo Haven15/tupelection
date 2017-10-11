@@ -32,13 +32,6 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputEmail3" placeholder="Email" value="<?php echo $voters->Email?>" name="email">
-                    </div>
-                  </div>
-                  <div class="form-group">
                     <label for="RandPass" class="col-sm-2 control-label">Password</label>
                     <div class="col-sm-9">
                       <input type="text" class="form-control" id="RandPass" placeholder="Password" name="password" required>
@@ -149,4 +142,8 @@
   function GenerateRandomPassword(){
     document.getElementById("RandPass").value = "<?php echo rand_string(8);?>";
   }
+
+  $(function() {
+    $('.select2').select2();
+  })
   </script>

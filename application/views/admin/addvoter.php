@@ -21,41 +21,33 @@
                 <h3 class="box-title">Register Voter</h3>
               </div>
               <!-- /.box-header -->
-              <form action="<?php echo base_url('election/addVoterID/'.$IDslug) ?>" method="post" class="form-horizontal">
+              <!-- <form action="<?php //echo base_url('election/addVoterID/'.$IDslug) ?>" method="post" class="form-horizontal">
                 <div class="box-body">
                   <form class="form-horizontal">
                   <div class="box-body">
-                    <!-- <div class="form-group">
-                      <label class="col-sm-2 control-label">by Voter ID</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Voter ID" name="vID" required></input>
-                      </div>
-                    </div> -->
                     <div class="form-group">
                       <label class="col-sm-2 control-label">by Voter ID</label>
                       <div class="col-sm-10">
                         <select class="form-control selectoption" name="VoterID">
                           <option selected="selected "disabled="disabled" >Select VoterID</option>
                           <?php
-                          if($voters){
-                            foreach($voters as $voter){
+                          //if($voters){
+                            //foreach($voters as $voter){
                           ?>
-                          <option value="<?php echo $voter['Voter_ID']; ?>"><?php echo $voter['Voter_ID']; ?></option>
+                          <option value="<?php //echo $voter['Voter_ID']; ?>"><?php //echo $voter['Voter_ID']; ?></option>
                           <?php
-                            }
-                          }?>
+                            //}
+                          //}?>
                         </select>
                       </div>
                     </div>
                   </div>
-                  <!-- /.box-body -->
                   <div class="box-footer">
                     <button type="submit" class="btn btn-danger pull-right">Add Voter</button>
                   </div>
-                  <!-- /.box-footer -->
                   </form>
                 </div>
-              </form>
+              </form> -->
               <form action="<?php echo base_url('election/addVoterCourse/'.$IDslug) ?>" method="post" class="form-horizontal">
                 <div class="box-body">
                   <form class="form-horizontal">
@@ -87,6 +79,53 @@
                 </div>
               </form>
               <!-- /.box-body -->
+
+              <div class="box-body">
+                <h4>List of Allowed Voters</h4>
+                <table id="example1" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>Course</th>
+                    <th>Course Name</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                      if($eligiblevoters){
+                        foreach($eligiblevoters as $evoter){
+                    ?>
+                    <tr>
+                      <td><?php echo $evoter['Course_Code']; ?></td>
+                      <td><?php echo $evoter['CourseName']; ?></td>
+                      <td>
+                          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteVoter-<?php echo $evoter['Eligible_ID']; ?>" data-placement="top" title="Remove"><i class="fa fa-trash"></i></button>
+                          <div class="modal fade" id="deleteVoter-<?php echo $evoter['Eligible_ID']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                  <h4 class="modal-title" id="myModalLabel">Are you sure you want to remove Voters?</h4>
+                                </div>
+                                <form action="<?php echo base_url('election/deleteVoterCourse/'.$IDslug) ?>" method="post" class="form-horizontal">
+                                  <input type="hidden" class="form-control" id="ID-<?php echo $evoter['Eligible_ID']; ?>" value="<?php echo $evoter['Eligible_ID']; ?>" name="EligibleID" >
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                  <button type="submit" class="btn btn-danger" name="btnDelete">Remove Voter</button>
+                                </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                      </td>
+                    </tr>
+                    <?php
+                        }
+                      }
+                    ?>
+                  </tbody>
+                </table>
+              </div>
             </div>
             <!-- /.box-danger -->
           </div>
@@ -114,6 +153,15 @@
 
 <script>
 $(function () {
-    $('.selectoption').select2()
+  $('.selectoption').select2()
+  $('#example1').DataTable()
+  $('#example2').DataTable({
+    'paging'      : true,
+    'lengthChange': false,
+    'searching'   : false,
+    'ordering'    : true,
+    'info'        : true,
+    'autoWidth'   : false
   })
+})
 </script>

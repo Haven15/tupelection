@@ -10,7 +10,7 @@ class voter_model extends CI_Model{
 
 	public function getVoters(){
 		//$this->db->order_by('voter_id', 'desc');
-		$this->db->select('v.Voter_ID, FirstName, MiddleInitial, LastName, c.Course_Code, College_Code, v.Email, Password');
+		$this->db->select('v.Voter_ID, FirstName, MiddleInitial, LastName, c.Course_Code, College_Code, v.Date_Registered, Password');
 		$this->db->from('voter_table as v, course_table as c');
 		$this->db->where('v.Course_Code = c.Course_Code');
 		$query = $this->db->get();
@@ -29,7 +29,6 @@ class voter_model extends CI_Model{
 			'MiddleInitial'=>$this->input->post('minitial'),
 			'LastName'=>$this->input->post('lname'),
 			'Course_code'=>$this->input->post('course'),
-			'Email'=>$this->input->post('email'),
 			'Password'=>$this->input->post('password')
 			);
 		$this->db->insert('voter_table', $field);
@@ -41,7 +40,7 @@ class voter_model extends CI_Model{
 	}
 
 	public function getVoterById($id){
-		$this->db->select('vt.Voter_ID, vt.FirstName, vt.MiddleInitial, vt.LastName, vt.Course_Code, cu.CourseName, vt.Email, vt.Password');
+		$this->db->select('vt.Voter_ID, vt.FirstName, vt.MiddleInitial, vt.LastName, vt.Course_Code, cu.CourseName, vt.Password');
 		$this->db->from('voter_table as vt, course_table as cu');
 		$this->db->where('vt.Course_Code = cu.Course_Code');
 		$this->db->where('vt.Voter_ID', $id);
@@ -73,7 +72,6 @@ class voter_model extends CI_Model{
 			'MiddleInitial'=>$this->input->post('minitial'),
 			'LastName'=>$this->input->post('lname'),
 			'Course_code'=>$this->input->post('course'),
-			'Email'=>$this->input->post('email'),
 			'Password'=>$this->input->post('password')
 			);
 		$this->db->where('Voter_ID', $id);
@@ -103,7 +101,7 @@ class voter_model extends CI_Model{
 						$query = $this->db->get('election_table');
 						return $query->result_array();
 		}
-		$this->db->select('vtr.Voter_ID, FirstName, MiddleInitial, LastName, cu.Course_Code, College_Code, vtr.Email, Password, vt.Vote_ID, vt.Has_Voted, vt.Election_ID');
+		$this->db->select('vtr.Voter_ID, FirstName, MiddleInitial, LastName, cu.Course_Code, College_Code, Password, vt.Vote_ID, vt.Date_Time_Voted,vt.Election_ID');
 		$this->db->from('voter_table as vtr, vote_table as vt, course_table as cu');
 		$this->db->where('vtr.Course_Code = cu.Course_Code and vtr.Voter_ID = vt.Voter_ID');
 		$this->db->where(array('vt.Election_ID' => $slug));
@@ -173,55 +171,6 @@ class voter_model extends CI_Model{
 			return false;
 		}
 	}
-	public function addVoterbyCourse($slug = FALSE){
-		$this->db->select('vtr.Voter_ID, FirstName, MiddleInitial, LastName, cu.Course_Code, College_Code, vtr.Email, Password, vt.Vote_ID, vt.Election_ID');
-		$this->db->from('voter_table as vtr, vote_table as vt, course_table as cu');
-		$this->db->where('vtr.Course_Code = cu.Course_Code and vtr.Voter_ID = vt.Voter_ID');
-		$this->db->where(array('vt.Election_ID' => $slug));
-		$selectvoters = $this->db->get();
-
-		$field = array(
-			'Voter_ID' => 'Voter_ID',
-			'Election_ID' => 'Election_ID',
-			);
-	// $this->db->insert('vote_table', $field);
-		if ($slug === FALSE)
-		{
-						$query = $this->db->get('voter_table');
-						return $query->result_array();
-		}
-		$course = $this->input->post('Course');
-		// $this->db->insert('vote_table', $field);
-		// $this->db->select('Voter_ID', $slug);
-		// $this->db->get('voter_table');
-		// $this->db->where('voter_table.Course_Code = '.$course.'');
-		$query = $this->db->query("INSERT INTO vote_table (Voter_ID, Election_ID)
-															SELECT Voter_ID, '$slug'
-															FROM voter_table
-															WHERE voter_table.Course_Code = '$course'");
-
-		// $select = $this->db->select('Voter_ID', $slug)->where('voter_table.Course_Code', $course)->get('voter_table');
-		// if($select->num_rows())
-		// {
-		//     $insert = $this->db->insert('vote_table', $select->result_array());
-		// 		return true;
-		// }
-		// else{
-		// 	return false;
-		// }
-		if ($query >= 0){
-			foreach ($query as $row){
-		   	echo $row['Voter_ID'];
-		   	echo $row['Election_ID'];
-			}
-			return true;
-		}
-	}
-		// if($this->db->affected_rows() > 0){
-		// 	return true;
-		// }else{
-		// 	return false;
-		// }
 
 		public function deleteVoterPerElection($slug = FALSE){
 			$id = $this->input->post('VoteID');
@@ -237,6 +186,46 @@ class voter_model extends CI_Model{
 		public function deleteAllVoters($slug = FALSE){
 			$this->db->where('Election_ID', $slug);
 			$this->db->delete('vote_table');
+			if($this->db->affected_rows() > 0){
+				return true;
+			}else{
+				return false;
+			}
+		}
+
+		public function addVoterbyCourse($slug = FALSE){
+			$course = $this->input->post('Course');
+			$field = array(
+				'Course_Code' => $course,
+				'Election_ID' => $slug,
+				);
+			$this->db->insert('eligible_voter_election', $field);
+			if($this->db->affected_rows() > 0){
+				return true;
+			}else{
+				return false;
+			}
+		}
+		public function getEligibleVoters($id){
+			$this->db->select('eve.Eligible_ID, eve.Course_Code, ct.CourseName');
+			$this->db->from('eligible_voter_election as eve, course_table as ct');
+			$this->db->where('eve.Course_Code = ct.Course_Code');
+			$this->db->where('eve.Election_ID', $id);
+			$query = $this->db->get()->result_array();
+			if($query > 0){
+				return $query;
+			}else{
+				return false;
+			}
+		}
+		public function deleteEligibleVoter($slug = FALSE){
+			$EligibleID = $this->input->post('EligibleID');
+			$field = array(
+				'Eligible_ID' => $EligibleID,
+				'Election_ID' => $slug,
+				);
+			$this->db->where($field);
+			$this->db->delete('eligible_voter_election');
 			if($this->db->affected_rows() > 0){
 				return true;
 			}else{

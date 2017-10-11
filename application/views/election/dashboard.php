@@ -109,36 +109,3 @@
   <!-- /.container -->
 </div>
 <!-- /.content-wrapper -->
-
-
-<!-- <script>
-$(document).ready(function(){
-     $(document).on('click', '.column_sort', function(){
-          var column_name = $(this).attr("id");
-          var order = $(this).data("order");
-          var arrow = '';
-
-          //glyphicon glyphicon-arrow-up
-          //glyphicon glyphicon-arrow-down
-          if(order == 'desc')
-          {
-               arrow = '&nbsp;<span class="glyphicon glyphicon-arrow-down"></span>';
-
-          }
-          else
-          {
-               arrow = '&nbsp;<span class="glyphicon glyphicon-arrow-up"></span>';
-          }
-          $.ajax({
-               url:"sort_election.php",
-               method:"POST",
-               data:{column_name:column_name, order:order},
-               success:function(data)
-               {
-                    $('#election_data').html(data);
-                    $('#'+column_name+'').append(arrow);
-               }
-          })
-     });
-});
-</script> -->

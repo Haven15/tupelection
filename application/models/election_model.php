@@ -34,7 +34,6 @@ class election_model extends CI_Model{
 		if(isset($_POST['archived'])){
 			$id = "5";}
 
-		//$id = $this->input->post('building');
 		echo '<script language="javascript">';
 		echo 'alert($id)';
 		echo '</script>';

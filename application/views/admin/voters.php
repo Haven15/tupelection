@@ -28,12 +28,11 @@
 
 <section class="content-header">
   <h1>
-    Voters
-    <small>Students</small>
+    Votes
   </h1>
   <ol class="breadcrumb">
     <!-- <li><a href="<?php //echo base_url('election/overview/'.$IDslug)?>"><i class="fa fa-eye"></i> Overview</a></li> -->
-    <li class="active"><a href=""><i class="fa fa-user"></i> Voters</a></li>
+    <li class="active"><a href=""><i class="fa fa-user"></i> Votes</a></li>
   </ol>
 </section>
 <section class="content">
@@ -41,14 +40,14 @@
     <div class="col-xs-12">
       <div class="box box-danger">
         <div class="box-header">
-          <h3 class="box-title">Voter Table</h3>
+          <h3 class="box-title">Votes Table</h3>
           <div class="pull-right">
-            <a href="<?php echo base_url('election/addvoter/'.$IDslug)?>" class="btn btn-info">Add Voter <i class="fa fa-user-plus"></i></a>
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action
+            <a href="<?php echo base_url('election/addvoter/'.$IDslug)?>" class="btn btn-info">Manage Voters <i class="fa fa-user-plus"></i></a>
+              <!-- <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action
                       <span class="fa fa-caret-down"></span></button>
                     <ul class="dropdown-menu">
                       <li><a class="btn btn-default" data-toggle="modal" data-target="#deleteAllVoters" data-placement="top" title="Delete All Voters"><i class="fa fa-trash"> Delete All Voters</i></a></li>
-                    </ul>
+                    </ul> -->
           </div>
         </div>
         <!-- /.box-header -->
@@ -63,8 +62,7 @@
               <th>Last Name</th>
               <th>College</th>
               <th>Course</th>
-              <th>Email</th>
-              <th>Voted?</th>
+              <th>Date and Time Voted</th>
               <th>Actions</th>
             </tr>
             </thead>
@@ -80,12 +78,11 @@
                 <td><?php echo $voter->LastName; ?></td>
                 <td><?php echo $voter->College_Code; ?></td>
                 <td><?php echo $voter->Course_Code; ?></td>
-                <td><?php echo $voter->Email; ?></td>
-                <td><?php echo $voter->Has_Voted; ?></td>
+                <td><?php echo $voter->Date_Time_Voted; ?></td>
                 <td>
-                  <div class="btn-group-vertical">
-                    <a href="<?php //echo base_url('election/edit/'.$voter->Voter_ID)?>" class="btn btn-primary" title="Edit Voter"><i class="fa fa-edit"></i></a>
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteVoter-<?php echo $voter->Vote_ID; ?>" data-placement="top" title="Remove"><i class="fa fa-trash"></i></button>
+                  <div class="btn-group">
+                    <a href="<?php echo base_url('election/voteractivity/'.$IDslug.'/'.$voter->Voter_ID)?>" class="btn btn-primary" title="Voter Activity"><i class="fa fa-info"></i></a>
+                    <!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteVoter-<?php echo $voter->Vote_ID; ?>" data-placement="top" title="Remove"><i class="fa fa-trash"></i></button> -->
                   </div>
                     <div class="modal fade" id="deleteVoter-<?php echo $voter->Vote_ID; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                       <div class="modal-dialog" role="document">

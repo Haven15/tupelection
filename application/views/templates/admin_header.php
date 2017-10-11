@@ -6,15 +6,16 @@
   <title>TUP Online Election</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link type="text/css" rel="stylesheet" href="<?php echo base_url("dist/css/skins/_all-skins.min.css")?>" />
-  <link type="text/css" rel="stylesheet" href="<?php echo base_url("dist/css/skins/skin-red.css")?>" />
-  <link type="text/css" rel="stylesheet" href="<?php echo base_url("dist/css/bootstrap.min.css")?>" />
+  <link type="text/css" rel="stylesheet" href="<?php echo base_url("dist/css/skins/_all-skins.css")?>" />
+  <!-- <link type="text/css" rel="stylesheet" href="<?php echo base_url("dist/css/skins/skin-red.css")?>" /> -->
+  <link type="text/css" rel="stylesheet" href="<?php echo base_url("dist/css/bootstrap.css")?>" />
   <!-- Admin LTE CSS -->
   <link type="text/css" rel="stylesheet" href="<?php echo base_url("dist/bower_components/font-awesome/css/font-awesome.min.css")?>" />
   <link type="text/css" rel="stylesheet" href="<?php echo base_url("dist/bower_components/Ionicons/css/ionicons.min.css")?>" />
   <link type="text/css" rel="stylesheet" href="<?php echo base_url("dist/plugins/iCheck/square/blue.css")?>" />
-  <link type="text/css" rel="stylesheet" href="<?php echo base_url("dist/css/AdminLTE.min.css")?>" />
+  <link type="text/css" rel="stylesheet" href="<?php echo base_url("dist/css/AdminLTE.css")?>" />
   <link type="text/css" rel="stylesheet" href="<?php echo base_url('dist/bower_components/select2/dist/css/select2.min.css') ?>">
+  <!-- TUP CSS -->
   <link type="text/css" rel="stylesheet" href="<?php echo base_url("assets/css/tup-main.css")?>" />
   <link type="text/css" rel="stylesheet" href="<?php echo base_url("assets/css/tup-media.css")?>" />
   <!-- Data Tables -->
@@ -25,10 +26,10 @@
 
 
 </head>
-<body class="hold-transition skin-red fixed sidebar-mini ">
+<body class="hold-transition skin-red fixed sidebar-mini">
   <?php
-   if(!$this->session->userdata('is_logged_in') ){
-      redirect('../login/index');
+   if(!$this->session->userdata('is_logged_in_admin') ){
+      redirect('../login/adminlogin');
       }
   ?>
   <!-- Site wrapper -->
@@ -55,8 +56,8 @@
           <span class="icon-bar"></span>
         </a>
         <div style="font-size: 17px; color: #ffffff; margin-top: 12px;">
-        <p><?php echo $election_data['Elec_Title'];?>&nbsp;&nbsp;<span class="label label-info"><?php echo $election_data['Election_Status'];?></span>&nbsp;&nbsp;<?php echo $election_data['StartDate'];?>&nbsp;-&nbsp;
-        <?php echo $election_data['EndDate'];?>&nbsp;&nbsp;</p>
+        <p><?php echo $election_data['Elec_Title'];?>&nbsp;&nbsp;<span class="label label-info"><?php echo $election_data['Election_Status'];?></span>&nbsp;&nbsp;
+          <i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo $election_data['StartDate'];?>&nbsp;-&nbsp;<?php echo $election_data['EndDate'];?>&nbsp;&nbsp;</p>
         </div>
       </nav>
     </header>

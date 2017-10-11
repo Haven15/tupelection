@@ -59,8 +59,8 @@
         </head>
         <body class="skin-red layout-top-nav">
           <?php
-           if(!$this->session->userdata('is_logged_in') ){
-              redirect('../login/index');
+           if(!$this->session->userdata('is_logged_in_admin') ){
+              redirect('../login/adminlogin');
               }
           ?>
           <header class="main-header">
@@ -104,7 +104,7 @@
                             <a href="#" class="btn btn-default btn-flat">My Account</a>
                           </div>
                           <div class="pull-right">
-                            <a href="<?php echo base_url('login/logout');?>" class="btn btn-default btn-flat">Sign out</a>
+                            <a href="<?php echo base_url('login/logout_admin');?>" class="btn btn-default btn-flat">Sign out</a>
                           </div>
                         </li>
                       </ul>
