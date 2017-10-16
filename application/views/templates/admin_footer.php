@@ -15,6 +15,9 @@
 
   <!-- page script -->
   <script src="<?php echo base_url("dist/bower_components/select2/dist/js/select2.full.min.js")?>"></script>
+  <!-- Morris.js charts -->
+  <script src="<?php echo base_url('dist/bower_components/raphael/raphael.min.js')?>"></script>
+  <script src="<?php echo base_url('dist/bower_components/morris.js/morris.min.js')?>"></script>
 
 
 </body>

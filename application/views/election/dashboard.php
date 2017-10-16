@@ -66,9 +66,10 @@
                 foreach($elections as $election){
             ?>
             <div class="pull-right col-md-5">
+              <a href="<?php echo base_url('election/overview/'.$election->Election_ID); ?>">
               <div class="box box-danger box-solid">
                 <div class="box-header with-border">
-                  <a href="<?php echo base_url('election/overview/'.$election->Election_ID); ?>"><h3 class="box-title"><?php echo $election->Elec_Title; ?></h3></a>
+                  <h3 class="box-title"><?php echo $election->Elec_Title; ?></h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -78,11 +79,11 @@
                     $label="danger";
                   }?>
 
-                  <p style="font-size: 16px;"><?php echo $election->StartDate ?> - <?php echo $election->EndDate; ?></p>
+                  <p style="font-size: 16px; color: black;"><?php echo $election->StartDate ?> - <?php echo $election->EndDate; ?></p>
                   <p style="font-size: 16px;"><span class="label label-<?php echo $label?>"><?php echo $election->Election_Status; ?></span></p>
                 </div>
                 <!-- /.box-body -->
-              </div>
+              </div></a>
               <!-- /.box-solid -->
             </div>
             <!-- /.box-success -->

@@ -18,11 +18,11 @@
 		<h5 style="color:black;">MANAGE ELECTION!</h5>
 			
 			<?php
-				if($this->session->flashdata('error_msg')){
+				if($this->session->flashdata('error_msg_admin')){
 			?>
 				<div class="alert alert-danger" style="text-align: center;">
 				<i class="icon fa fa-exclamation"></i>
-					<?php echo $this->session->flashdata('error_msg')?>
+					<?php echo $this->session->flashdata('error_msg_admin')?>
 				</div>
 			<?php 
 				}?>

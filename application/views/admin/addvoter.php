@@ -5,12 +5,11 @@
     <div class="col-sm-11">
       <section class="content-header">
       <h1>
-        Add Voter
-        <small>New Voter</small>
+        Manage Voter
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo base_url('election/voters/'.$IDslug)?>"><i class="fa fa-user"></i> Voters</a></li>
-        <li class="active"><i class="fa fa-user-plus"></i> Add Voter</li>
+        <li class="active"><i class="fa fa-user-plus"></i> Manage Voter</li>
       </ol>
       </section>
       <section class="content">
@@ -134,6 +133,9 @@
             <div class="box box-info">
               <div class="box-header">
                 <h3 class="box-title">Instructions</h3>
+              </div>
+              <div class="box-body">
+                <p></p>
               </div>
               <!-- /.box-header -->
             </div>

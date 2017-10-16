@@ -173,6 +173,31 @@ class election extends CI_Controller{
                 $this->load->view('templates/admin_footer');
         }
 
+        public function createballot($slug = NULL)
+        {
+                $data['election_data'] = $this->e->get_election($slug);
+                if (empty($data['election_data']))
+                {
+                        show_404();
+                }
+
+                $this->load->view('templates/admin_header', $data);
+                $this->load->view('admin/createballot', $data);
+                $this->load->view('templates/admin_footer');
+        }
+        public function ballot($slug = NULL)
+        {
+                $data['election_data'] = $this->e->get_election($slug);
+                if (empty($data['election_data']))
+                {
+                        show_404();
+                }
+
+                $this->load->view('templates/admin_header', $data);
+                $this->load->view('admin/ballot', $data);
+                $this->load->view('templates/admin_footer');
+        }
+
 
         public function edit($id){
       		$data['voters'] = $this->m->getVoterById($id);

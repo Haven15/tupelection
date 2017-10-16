@@ -14,6 +14,14 @@
     <!-- TUP CSS -->
     <link type="text/css" rel="stylesheet" href="<?php echo base_url("assets/css/tup-main.css")?>" />
     <link type="text/css" rel="stylesheet" href="<?php echo base_url("assets/css/tup-media.css")?>" />
+    <style>
+      .navbar .title{
+        color: white;
+        font-size: 18px;
+        margin-top: 15px;
+      }
+
+    </style>
 </head>
 <body>
   <?php
@@ -23,8 +31,15 @@
   ?>
   <nav id="custom-bootstrap-menu" class="navbar navbar-default" role="navigation">
         <!-- Brand and toggle get grouped for better mobile display -->
-
-        <p style="color: white; text-align: center; font-size: 18px; margin-top: 15px;" >
-            <img alt="TUP" src="<?php echo base_url('assets/img/tup-logo.png')?>" id="brand" />
-          Technological University of the Philippines</p>
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <center><p class="title">
+                <img alt="TUP" src="<?php echo base_url('assets/img/tup-logo.png')?>" id="brand" />
+              Technological University of the Philippines
+            </p></center>
+          </div>
+          <div class="col-md-3">
+            <p class="title pull-right">Hello, <?php echo $this->session->userdata('lastname');?>!&nbsp;&nbsp;</p>
+          </div>
+        </div>
   </nav>

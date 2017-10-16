@@ -2,9 +2,8 @@
 class Login_model extends CI_Model{
 
 
-	function validate()
+	public function validate()
 	{
-
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
 		$tz = 'Singapore';
@@ -13,13 +12,14 @@ class Login_model extends CI_Model{
 		$dt->setTimestamp($timestamp); //adjust the object to correct timestamp
 		$DateNow = $dt->format('Y-m-d h:i A');
 		if(empty($username) || empty($password)){
-			return false;
+			$return = '2';
+			return $return;
 		}
 
 		$jsonurl = 'http://www.tup.edu.ph/android/get_studprofile/'.$username.'/'.$password.'';
 		$json = file_get_contents($jsonurl);
 		$obj = json_decode($json);
-
+		
 
 		if($obj->{'success'} == '1'){
 			$this->db->select('Voter_ID');
@@ -27,7 +27,8 @@ class Login_model extends CI_Model{
 			$this->db->where('Voter_ID', $username);
 			$voter = $this->db->get();
 			if ($voter->num_rows() == '1'){
-				return true;
+				$return = '1';
+				return $return;
 			}
 			else{
 				foreach ($obj->student as $student){
@@ -48,13 +49,47 @@ class Login_model extends CI_Model{
 				);
 
 				$this->db->insert('voter_table', $field);
-				return true;
+				$return = '1';
+				return $return;
 			}
 
 		}
 		else if($obj->{'success'} == '0'){
-		  return false;
+			$return = '2';
+			return $return;
 		}
+		else{
+			$return = '3';
+			return $return;
+		}
+	}
+	
+	public function get_studinfo(){
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+		$jsonurl = 'http://www.tup.edu.ph/android/get_studprofile/'.$username.'/'.$password.'';
+		$json = file_get_contents($jsonurl);
+		$obj = json_decode($json);
+		if($obj->{'success'} == '1'){
+			foreach ($obj->student as $student){
+			   $fname = $student->fname;
+			   $lname = $student->lname;
+			   $initial = $student->initial;
+			   $course = $student->course;
+			}
+			
+			$username = $this->input->post('username');
+			$this->db->select('LastName');
+			$this->db->from('voter_table');
+			$this->db->where('Voter_ID', $username);
+			$voter = $this->db->get();
+			
+			return $fname;
+		}
+		else{
+			return $username;
+		}
+		
 	}
 }
 

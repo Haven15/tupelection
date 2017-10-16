@@ -19,13 +19,6 @@
 
     <!-- bootstrap rangedatepicker -->
     <link type="text/css" rel="stylesheet" href="<?php echo base_url('dist/bower_components/bootstrap-daterangepicker/daterangepicker.css') ?>">
-    <!-- bootstrap datepicker -->
-    <!-- <link type="text/css" rel="stylesheet" href="<?php //echo base_url('dist/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') ?>"> -->
-    <!-- <link type="text/css" rel="stylesheet" href="<?php //echo base_url('dist/bower_components/select2/dist/css/select2.min.css') ?>"> -->
-    <!-- Bootstrap time Picker -->
-    <!-- <link type="text/css" rel="stylesheet" href="<?php //echo base_url('dist/plugins/timepicker/bootstrap-timepicker.min.css') ?>"> -->
-    <!-- Bootstrap Date Time Picker -->
-    <!-- <link type="text/css" rel="stylesheet" href="<?php //echo base_url('dist/plugins/datetimepicker/bootstrap-datetimepicker.min.css') ?>"> -->
     <!-- Data Tables -->
     <link type="text/css" rel="stylesheet" href="<?php echo base_url("dist/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css")?>">
     <!-- TUP CSS -->
@@ -78,6 +71,13 @@
                   <ul class="nav navbar-nav">
                     <li><a href="<?php echo base_url("election/dashboard")?>" title="Dashboard"><i class="fa fa-dashboard"></i> &nbsp;<span style="font-size: 16px;">Dashboard</span> <span class="sr-only"></span></a></li>
                     <li><a href="<?php echo base_url("election/voterspage")?>" title="Voters"><i class="fa fa-users"></i> &nbsp;<span style="font-size: 16px;">Voters</span></a></li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size: 16px;"><i class="fa fa-cog"></i> &nbsp;Settings</a>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Manage Course</a></li>
+                        <li><a href="#">Manage College</a></li>
+                      </ul>
+                    </li>
                   </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -89,7 +89,7 @@
                 <!-- The user image in the navbar-->
                         <img src="<?php echo base_url('assets/img/tup-logo.png')?>" class="user-image" alt="User Image">
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                        <span class="hidden-xs" style="font-size: 16px;"><?php echo $this->session->userdata('username'); ?></span>
+                        <span class="hidden-xs" style="font-size: 16px;">Hi, <?php echo $this->session->userdata('username'); ?>!</span>
                       </a>
                       <ul class="dropdown-menu">
                 <!-- The user image in the menu -->

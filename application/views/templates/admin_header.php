@@ -15,6 +15,7 @@
   <link type="text/css" rel="stylesheet" href="<?php echo base_url("dist/plugins/iCheck/square/blue.css")?>" />
   <link type="text/css" rel="stylesheet" href="<?php echo base_url("dist/css/AdminLTE.css")?>" />
   <link type="text/css" rel="stylesheet" href="<?php echo base_url('dist/bower_components/select2/dist/css/select2.min.css') ?>">
+  <link type="text/css" rel="stylesheet" href="<?php echo base_url('dist/bower_components/morris.js/morris.css')?>">
   <!-- TUP CSS -->
   <link type="text/css" rel="stylesheet" href="<?php echo base_url("assets/css/tup-main.css")?>" />
   <link type="text/css" rel="stylesheet" href="<?php echo base_url("assets/css/tup-media.css")?>" />
@@ -23,6 +24,12 @@
 
   <!-- jQuery 3 -->
   <script src="<?php echo base_url("dist/bower_components/jquery/dist/jquery.min.js")?>"></script>
+
+  <style type="text/css">
+    .input .minmax{
+      width: 100px;
+    }
+  </style>
 
 
 </head>
@@ -68,30 +75,6 @@
     <aside class="main-sidebar">
       <!-- sidebar: style can be found in sidebar.less -->
       <section class="sidebar">
-        <!-- Sidebar user panel -->
-        <!--
-        <div class="user-panel">
-          <div class="pull-left image">
-            <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-          </div>
-          <div class="pull-left info">
-            <p>Alexander Pierce</p>
-            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-          </div>
-        </div>
-        -->
-        <!-- search form -->
-        <!-- <form action="#" method="get" class="sidebar-form">
-          <div class="input-group">
-            <input type="text" name="q" class="form-control" placeholder="Search...">
-                <span class="input-group-btn">
-                  <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                  </button>
-                </span>
-          </div>
-        </form> -->
-        <!-- /.search form -->
-        <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">MAIN NAVIGATION</li>
           <li>
@@ -124,36 +107,18 @@
           -->
           </li>
           <li>
-            <a href="">
-              <i class="fa fa-users"></i>
-              <span>Candidates </span>
-              <!--
-              <span class="pull-right-container">
-                <small class="label pull-right bg-green">new</small>
-              </span>
-            -->
+            <a href="<?php echo base_url('election/ballot/'.$IDslug)?>">
+              <i class="fa fa-newspaper-o"></i>
+              <span>Ballot </span>
             </a>
           </li>
           <li>
             <a href="">
               <i class="fa  fa-star"></i>
               <span>Results</span>
-              <!--
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            -->
             </a>
-            <!--
-            <ul class="treeview-menu">
-              <li><a href="../charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
-              <li><a href="../charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
-              <li><a href="../charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
-              <li><a href="../charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
-            </ul>
-          -->
           </li>
-          <li>
+          <li class="treeview">
             <a href="#">
               <i class="fa fa-gears (alias)"></i>
               <span>Settings</span>
@@ -162,11 +127,17 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i> College</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> Course</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> Position</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> Political Party</a></li>
+              <li><a href="#"><i class="fa fa-bullhorn"></i> Title</a></li>
+              <li><a href="#"><i class="fa fa-calendar-o"></i> Dates</a></li>
+              <li><a href="#"><i class="fa fa-archive"></i> Archive Election</a></li>
+              <li><a href="#"><i class="fa fa-trash"></i> Delete Election</a></li>
             </ul>
+          </li>
+          <li>
+            <a href="">
+              <i class="fa fa-send"></i>
+              <span>Start Election</span>
+            </a>
           </li>
           <li class="header">ELECTION</li>
           <li>

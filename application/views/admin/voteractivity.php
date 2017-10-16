@@ -17,7 +17,7 @@
       <div class="col-md-8">
         <div class="box box-danger">
           <div class="box-header">
-            <h3 class="box-title">Voter Activity</h3>
+            <h3 class="box-title">Votes</h3>
           </div>
           <div class="box-body">
             <table id="example3" class="table table-bordered table-hover">

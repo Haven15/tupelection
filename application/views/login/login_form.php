@@ -6,7 +6,7 @@
 	<div class="box" style="margin-top:150px"  > 
 	<div class="row">
 	<div class="col form2"> 
-		<p class="logo"><img src="http://localhost/codeigniter/assets/img/tup-logo.png" style="width:100px; height:100px;"> </p>
+		<p class="logo"><img src="<?php echo base_url('assets/img/tup-logo.png')?>" style="width:100px; height:100px;"> </p>
 		
 		<h2 style="color:black;"><b>TUP</b> ONLINE ELECTION SYSTEM</h2> <br /> 
 		
@@ -18,11 +18,11 @@
 		<h5 style="color:black;">SIGN IN USING YOUR ERS ACCOUNT TO START VOTING!</h5>
 			
 			<?php
-				if($this->session->flashdata('error_msg')){
+				if($this->session->flashdata('error_msg_voter')){
 			?>
 				<div class="alert alert-danger" style="text-align: center;">
 				<i class="icon fa fa-exclamation"></i>
-					<?php echo $this->session->flashdata('error_msg')?>
+					<?php echo $this->session->flashdata('error_msg_voter')?>
 				</div>
 			<?php 
 				}?>
