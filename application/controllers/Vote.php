@@ -9,21 +9,30 @@ class vote extends CI_Controller{
         $this->load->helper('url_helper');
     }
 
-    function electionlist($VoterID){
+    function electionlist($voterID){
         $data['elections'] = $this->e->getElections();
         if (empty($data['elections']))
         {
             show_404();
         }
+        $data['voter'] = $this->v->get_voter($voterID);
         $this->load->view('templates/vote_header', $data);
         $this->load->view('votepage/electionlist', $data);
         $this->load->view('templates/vote_footer');
     }
 
-    function votingpage(){
+    function votingpage($voterID = null, $electionID = null){
+        $data['voter'] = $this->v->get_voter($voterID);
+        $data['election'] = $this->v->getElection($electionID);
         $this->load->view('templates/vote_header');
-        $this->load->view('votepage/votingpage');
+        $this->load->view('votepage/votingpage', $data);
         $this->load->view('templates/vote_footer');
+    }
+
+    function prohibited($voterID = null){
+        $data['voter'] = $this->v->get_voter($voterID);
+        $this->load->view('templates/vote_header');
+        $this->load->view('votepage/prohibited', $data);
     }
 
     function checkvoter($voterID = null, $ElectionID = null){
@@ -31,15 +40,20 @@ class vote extends CI_Controller{
         if($result){
             redirect(base_url('vote/votingpage/'.$voterID.'/'.$ElectionID));
         }else{
-            // echo '<script type="text/javascript">';
-            // echo 'alert("You are not allowed to vote in this Election.")';
-            // echo "window.location = ".base_url('vote/electionlist/'.$voterID)."";
-            // echo '</script>';
-            echo "You are not allowed to vote in this election. ";
-            echo "<a href=".base_url('vote/electionlist/'.$voterID).">Go back</a>";
+            redirect(base_url('vote/prohibited/'.$voterID));
         }
-
     }
+
+    function reviewvote($voterID = null, $electionID = null){
+        $data['election'] = $this->v->getElection($electionID);
+        $data['voter'] = $this->v->get_voter($voterID);
+        $this->load->view('templates/vote_header');
+        $this->load->view('votepage/reviewvote', $data);
+        $this->load->view('templates/vote_footer');
+    }
+
+
+
 
 }
 

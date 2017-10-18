@@ -34,5 +34,30 @@ class vote_model extends CI_Model{
         }
     }
 
+    public function get_voter($slug = FALSE)
+  	{
+  	    if ($slug === FALSE)
+        {
+            $query = $this->db->get('voter_table');
+            return $query->result_array();
+        }
+        $field = array(
+          'Voter_ID' => $slug
+        );
+        $this->db->select('*');
+        $this->db->from('voter_table');
+        $this->db->where('Voter_ID', $slug);
+        $query = $this->db->get();
+        return $query->row_array();
+  	}
+
+    public function getElection($electionID = FALSE)
+    {
+        $this->db->select('*');
+        $this->db->from('election_table');
+        $this->db->where('Election_ID', $electionID);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
 }
  ?>

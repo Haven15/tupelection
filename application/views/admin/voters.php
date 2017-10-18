@@ -56,7 +56,7 @@
           <table id="example1" class="table table-bordered table-hover">
             <thead>
             <tr>
-              <th>Student ID</th>
+              <th>Voter ID</th>
               <th>First Name</th>
               <th>Middle Initial</th>
               <th>Last Name</th>

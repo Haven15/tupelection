@@ -109,3 +109,18 @@ main .form-control {
 .darkgreen-bg:hover {
   color: #CCCCCC;
 }
+
+.position-design {
+  background-color: #333;
+  color: #f5d02a;
+  text-align: center;
+  margin: 1%;
+  font-size: 18px;
+
+}
+
+.candidate-design {
+  text-align: center;
+  font-size: 18px;
+}
+

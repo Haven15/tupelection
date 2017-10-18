@@ -1,6 +1,6 @@
 
 <div class="container">
-  <?php $voterID = '14-037-027'?>
+  <?php $voterID = $voter['Voter_ID']?>
   <center><h2>List of elections</h2>
   <h4>Choose the election where you want to vote.<h4></center><br />
   <?php
