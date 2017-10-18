@@ -15,41 +15,35 @@
       </section>
       <section class="content">
       <div class="row">
+        <?php
+          if($ballots){
+            foreach ($ballots as $ballot){
+        ?>
         <div class="col-md-8">
           <div class="box box-danger">
             <div class="box-header">
               <table class="table table-responsive">
-                <th>President</th>
+                <th><?php echo $ballot['Position']; ?></th>
                 <th>
-                  <a href="" class="pull-right"><i class="fa fa-edit"></i> Edit</a>
-                  <!-- <button type="button" class="btn btn-default dropdown-toggle pull-right" data-toggle="dropdown">
-                    edit</button> -->
-                    <!-- <ul class="dropdown-menu">
-                      <li><a class="btn btn-default" title="Delete All Voters"><i class="fa fa-edit"> Edit</i></a></li>
-                    </ul> -->
+                  <a href="<?php echo base_url('election/candidates/'.$IDslug.'/'.$ballot['Ballot_ID'])?>" class="pull-right"><i class="fa fa-edit"></i> Edit</a>
                 </th>
-                <tr>
+                <!-- <tr>
                   <td><p class="logo"><img src="<?php echo base_url('assets/img/tup-logo.png')?>" style="width:50px; height:50px;"> Dublin, Queenie G. </p></td>
                   <td><a href="" class="pull-right"><i class="fa fa-edit"></i> Edit</a></td>
                 </tr>
                 <tr>
                   <td><p class="logo"><img src="<?php echo base_url('assets/img/tup-logo.png')?>" style="width:50px; height:50px;"> Pinto, Fritzi Ann J.</p></td>
                   <td><a href="" class="pull-right"><i class="fa fa-edit"></i> Edit</a></td>
-                </tr>
+                </tr> -->
               </table>
             </div>
           </div>
-          <div class="box box-danger">
+          <!-- <div class="box box-danger">
             <div class="box-header">
               <table class="table table-responsive">
                 <th>Vice President</th>
                 <th>
                   <a href="" class="pull-right"><i class="fa fa-edit"></i> Edit</a>
-                  <!-- <button type="button" class="btn btn-default dropdown-toggle pull-right" data-toggle="dropdown">
-                    edit</button> -->
-                    <!-- <ul class="dropdown-menu">
-                      <li><a class="btn btn-default" title="Delete All Voters"><i class="fa fa-edit"> Edit</i></a></li>
-                    </ul> -->
                 </th>
                 <tr>
                   <td><p class="logo"><img src="<?php echo base_url('assets/img/tup-logo.png')?>" style="width:50px; height:50px;"> Arroyo, Marlon Khely N.</p></td>
@@ -61,9 +55,21 @@
                 </tr>
               </table>
             </div>
-          </div>
+          </div> -->
         </div>
-      </div>
+        <?php
+            }
+          }else{
+            echo "
+            <div class='col-md-10'>
+              <blockquote>
+                <p><i>No Ballot yet. Click on New Question to create one.</i></p>
+              </blockquote>
+            </div>";
+          }
+        ?>
+        </div>
+      </section>
     </div>
   </div>
 </div>

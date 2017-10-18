@@ -7,7 +7,8 @@ class election extends CI_Controller{
         function __construct(){
           parent:: __construct();
           $this->load->model('election_model', 'e');
-          $this->load->model('voter_model', 'm');
+          $this->load->model('voter_model', 'v');
+          $this->load->model('ballot_model', 'b');
           $this->load->helper('url_helper');
         }
 
@@ -38,7 +39,7 @@ class election extends CI_Controller{
                 }
                 //$data['Elec_Title'] = $data['election_data']['Elec_Title'];
 
-                $data['voters'] = $this->m->getVotersPerElection($slug);
+                $data['voters'] = $this->v->getVotersPerElection($slug);
                 $this->load->view('templates/admin_header', $data);
                 $this->load->view('admin/voters', $data);
                 $this->load->view('templates/admin_footer');
@@ -101,7 +102,7 @@ class election extends CI_Controller{
 
                 $data['title'] = ucfirst($page); // Capitalize the first letter
 
-                $data['voters'] = $this->m->getVoters();
+                $data['voters'] = $this->v->getVoters();
                 $this->load->view('templates/header');
             		$this->load->view('election/'.$page, $data);
             		$this->load->view('templates/footer');
@@ -117,7 +118,7 @@ class election extends CI_Controller{
 
                 //$data['title'] = ucfirst($page); // Capitalize the first letter
 
-                $data['courses'] = $this->m->getCourse();
+                $data['courses'] = $this->v->getCourse();
                 $this->load->view('templates/header');
             		$this->load->view('election/'.$page, $data);
             		$this->load->view('templates/footer');
@@ -132,10 +133,10 @@ class election extends CI_Controller{
                 }
                 //$data['Elec_Title'] = $data['election_data']['Elec_Title'];
 
-                //$data['voters'] = $this->m->getVotersPerElection($slug);
-                $data['voters'] = $this->m->getAllVoterID();
-                $data['courses'] = $this->m->getAllVoterCourse();
-                $data['eligiblevoters'] = $this->m->getEligibleVoters($slug);
+                //$data['voters'] = $this->v->getVotersPerElection($slug);
+                $data['voters'] = $this->v->getAllVoterID();
+                $data['courses'] = $this->v->getAllVoterCourse();
+                $data['eligiblevoters'] = $this->v->getEligibleVoters($slug);
                 $this->load->view('templates/admin_header', $data);
                 $this->load->view('admin/addvoter', $data);
                 $this->load->view('templates/admin_footer');
@@ -151,7 +152,7 @@ class election extends CI_Controller{
 
                 //$data['title'] = ucfirst($page); // Capitalize the first letter
 
-                $data['voters'] = $this->m->getVoters();
+                $data['voters'] = $this->v->getVoters();
 
                 $this->load->view('templates/header');
             		$this->load->view('election/'.$page, $data);
@@ -167,7 +168,7 @@ class election extends CI_Controller{
                 }
                 //$data['Elec_Title'] = $data['election_data']['Elec_Title'];
 
-                $data['voters'] = $this->m->getVotersPerElection($slug);
+                $data['voters'] = $this->v->getVotersPerElection($slug);
                 $this->load->view('templates/admin_header', $data);
                 $this->load->view('admin/voteractivity', $data);
                 $this->load->view('templates/admin_footer');
@@ -193,15 +194,31 @@ class election extends CI_Controller{
                         show_404();
                 }
 
+                $data['ballots'] = $this->b->getBallot($slug);
                 $this->load->view('templates/admin_header', $data);
                 $this->load->view('admin/ballot', $data);
                 $this->load->view('templates/admin_footer');
         }
 
+        public function candidates($slug = NULL, $ballot = NULL)
+        {
+                $data['election_data'] = $this->e->get_election($slug);
+                if (empty($data['election_data']))
+                {
+                        show_404();
+                }
+
+                $data['candidates'] = $this->b->getCandidates($slug, $ballot);
+                $data['positions'] = $this->b->getPosition($slug, $ballot);
+                $this->load->view('templates/admin_header', $data);
+                $this->load->view('admin/candidates', $data);
+                $this->load->view('templates/admin_footer');
+        }
+
 
         public function edit($id){
-      		$data['voters'] = $this->m->getVoterById($id);
-          $data['courses'] = $this->m->getCourse();
+      		$data['voters'] = $this->v->getVoterById($id);
+          $data['courses'] = $this->v->getCourse();
       		$this->load->view('templates/header');
       		$this->load->view('election/editvoter', $data);
       		$this->load->view('templates/footer');
@@ -219,7 +236,7 @@ class election extends CI_Controller{
         }
 
         public function createVoter(){
-          $result = $this->m->create();
+          $result = $this->v->create();
       		if($result){
       			$this->session->set_flashdata('success_msg', 'Record added successfully.');
       		}else{
@@ -229,7 +246,7 @@ class election extends CI_Controller{
       	}
 
         public function updateVoter(){
-      		$result = $this->m->updatevoter();
+      		$result = $this->v->updatevoter();
       		if($result){
       			$this->session->set_flashdata('success_msg', 'Record updated successfully.');
       		}else{
@@ -239,7 +256,7 @@ class election extends CI_Controller{
       	}
 
         public function deleteVoter(){
-      		$result = $this->m->delete();
+      		$result = $this->v->delete();
       		if($result){
       			$this->session->set_flashdata('success_msg', 'Record deleted successfully.');
       		}else{
@@ -249,7 +266,7 @@ class election extends CI_Controller{
       	}
 
         public function addVoterID($id){
-          $result = $this->m->addVoterbyID($id);
+          $result = $this->v->addVoterbyID($id);
 
           if ($result == '1'){
             $this->session->set_flashdata('error_msg', 'Fail to Add Record.');
@@ -263,7 +280,7 @@ class election extends CI_Controller{
       	}
 
         public function addVoterCourse($id){
-          $result = $this->m->addVoterbyCourse($id);
+          $result = $this->v->addVoterbyCourse($id);
       		if($result){
       			$this->session->set_flashdata('success_msg', 'Record added successfully.');
       		}else{
@@ -273,7 +290,7 @@ class election extends CI_Controller{
       	}
 
         public function deleteVoterCourse($id){
-          $result = $this->m->deleteEligibleVoter($id);
+          $result = $this->v->deleteEligibleVoter($id);
       		if($result){
       			$this->session->set_flashdata('success_msg', 'Record added successfully.');
       		}else{
@@ -283,7 +300,7 @@ class election extends CI_Controller{
       	}
 
         public function deletePerVoter($id){
-      		$result = $this->m->deleteVoterPerElection($id);
+      		$result = $this->v->deleteVoterPerElection($id);
       		if($result){
       			$this->session->set_flashdata('success_msg', 'Record deleted successfully.');
       		}else{
@@ -292,7 +309,7 @@ class election extends CI_Controller{
       		redirect(base_url('election/voters/'.$id));
       	}
         public function deleteAllVoters($id){
-      		$result = $this->m->deleteAllVoters($id);
+      		$result = $this->v->deleteAllVoters($id);
       		if($result){
       			$this->session->set_flashdata('success_msg', 'Record deleted successfully.');
       		}else{
