@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class vote extends CI_Controller{
+
     function __construct(){
         parent:: __construct();
         $this->load->model('election_model', 'e');
@@ -9,7 +10,8 @@ class vote extends CI_Controller{
         $this->load->helper('url_helper');
     }
 
-    function electionlist($voterID){
+    function electionlist($voterID)
+    {
         $data['elections'] = $this->e->getElections();
         if (empty($data['elections']))
         {
@@ -21,7 +23,8 @@ class vote extends CI_Controller{
         $this->load->view('templates/vote_footer');
     }
 
-    function votingpage($voterID = null, $electionID = null){
+    function votingpage($voterID = null, $electionID = null)
+    {
         $data['voter'] = $this->v->get_voter($voterID);
         $data['election'] = $this->v->getElection($electionID);
         $this->load->view('templates/vote_header');
@@ -29,13 +32,15 @@ class vote extends CI_Controller{
         $this->load->view('templates/vote_footer');
     }
 
-    function prohibited($voterID = null){
+    function prohibited($voterID = null)
+    {
         $data['voter'] = $this->v->get_voter($voterID);
         $this->load->view('templates/vote_header');
         $this->load->view('votepage/prohibited', $data);
     }
 
-    function checkvoter($voterID = null, $ElectionID = null){
+    function checkvoter($voterID = null, $ElectionID = null)
+    {
         $result = $this->v->checkvoter($voterID, $ElectionID);
         if($result){
             redirect(base_url('vote/votingpage/'.$voterID.'/'.$ElectionID));
@@ -44,7 +49,8 @@ class vote extends CI_Controller{
         }
     }
 
-    function reviewvote($voterID = null, $electionID = null){
+    function reviewvote($voterID = null, $electionID = null)
+    {
         $data['election'] = $this->v->getElection($electionID);
         $data['voter'] = $this->v->get_voter($voterID);
         $this->load->view('templates/vote_header');

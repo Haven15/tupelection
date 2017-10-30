@@ -31,7 +31,6 @@
     }
   </style>
 
-
 </head>
 <body class="hold-transition skin-red fixed sidebar-mini">
   <?php

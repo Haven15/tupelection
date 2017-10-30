@@ -10,7 +10,7 @@ class voter_model extends CI_Model{
 
 	public function getVoters(){
 		//$this->db->order_by('voter_id', 'desc');
-		$this->db->select('v.Voter_ID, FirstName, MiddleInitial, LastName, c.Course_Code, College_Code, v.Date_Registered, Password');
+		$this->db->select('v.Voter_ID, FirstName, MiddleInitial, LastName, c.Course_Code, College_Code, v.Date_Registered');
 		$this->db->from('voter_table as v, course_table as c');
 		$this->db->where('v.Course_Code = c.Course_Code');
 		$query = $this->db->get();
@@ -29,7 +29,6 @@ class voter_model extends CI_Model{
 			'MiddleInitial'=>$this->input->post('minitial'),
 			'LastName'=>$this->input->post('lname'),
 			'Course_code'=>$this->input->post('course'),
-			'Password'=>$this->input->post('password')
 			);
 		$this->db->insert('voter_table', $field);
 		if($this->db->affected_rows() > 0){
@@ -40,7 +39,7 @@ class voter_model extends CI_Model{
 	}
 
 	public function getVoterById($id){
-		$this->db->select('vt.Voter_ID, vt.FirstName, vt.MiddleInitial, vt.LastName, vt.Course_Code, cu.CourseName, vt.Password');
+		$this->db->select('vt.Voter_ID, vt.FirstName, vt.MiddleInitial, vt.LastName, vt.Course_Code, cu.CourseName');
 		$this->db->from('voter_table as vt, course_table as cu');
 		$this->db->where('vt.Course_Code = cu.Course_Code');
 		$this->db->where('vt.Voter_ID', $id);
@@ -72,7 +71,6 @@ class voter_model extends CI_Model{
 			'MiddleInitial'=>$this->input->post('minitial'),
 			'LastName'=>$this->input->post('lname'),
 			'Course_code'=>$this->input->post('course'),
-			'Password'=>$this->input->post('password')
 			);
 		$this->db->where('Voter_ID', $id);
 		$this->db->update('voter_table', $field);
@@ -101,7 +99,7 @@ class voter_model extends CI_Model{
 						$query = $this->db->get('election_table');
 						return $query->result_array();
 		}
-		$this->db->select('vtr.Voter_ID, FirstName, MiddleInitial, LastName, cu.Course_Code, College_Code, Password, vt.Vote_ID, vt.Date_Time_Voted,vt.Election_ID');
+		$this->db->select('vtr.Voter_ID, FirstName, MiddleInitial, LastName, cu.Course_Code, College_Code, vt.Vote_ID, vt.Date_Time_Voted,vt.Election_ID');
 		$this->db->from('voter_table as vtr, vote_table as vt, course_table as cu');
 		$this->db->where('vtr.Course_Code = cu.Course_Code and vtr.Voter_ID = vt.Voter_ID');
 		$this->db->where(array('vt.Election_ID' => $slug));
